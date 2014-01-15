@@ -31,7 +31,8 @@ $_flags             = array
                         'base64_encode'   => 1,
                         'strip_meta'      => 0,
                         'strip_title'     => 0,
-                        'session_cookies' => 0
+                        'session_cookies' => 0,
+                        'allow_304'       => 1
                     );
 $_frozen_flags      = array
                     (
@@ -44,7 +45,8 @@ $_frozen_flags      = array
                         'base64_encode'   => 0,
                         'strip_meta'      => 0,
                         'strip_title'     => 0,
-                        'session_cookies' => 0
+                        'session_cookies' => 0,
+                        'allow_304'       => 0
                     );                    
 $_labels            = array
                     (
@@ -57,7 +59,8 @@ $_labels            = array
                         'base64_encode'   => array('Base64', 'Use base64 encodng on the address'), 
                         'strip_meta'      => array('Strip Meta', 'Strip meta information tags from pages'), 
                         'strip_title'     => array('Strip Title', 'Strip page title'), 
-                        'session_cookies' => array('Session Cookies', 'Store cookies for this session only') 
+                        'session_cookies' => array('Session Cookies', 'Store cookies for this session only'), 
+                        'allow_304'       => array('Allow 304 Cache', 'Pass on last modified info for local caching of images etc.')
                     );
                     
 $_hosts             = array
