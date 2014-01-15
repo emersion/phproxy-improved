@@ -486,6 +486,13 @@ do {
         
         $_post_body = '';
     } else {
+        if($_flags['allow_304']){
+            $get_all_headers = getallheaders();
+            if(isset($get_all_headers['If-Modified-Since']))
+                $_request_headers .= "If-Modified-Since: ".$get_all_headers['If-Modified-Since']."\r\n";
+            if(isset($get_all_headers['If-None-Match']))
+                $_request_headers .= "If-None-Match: ".$get_all_headers['If-None-Match']."\r\n";
+        }
         $_request_headers .= "\r\n";
     }
 
