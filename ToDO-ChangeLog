@@ -1,5 +1,8 @@
 ===Change Log===
 
+- Jan 15 2013
+Allow 304 cache (see https://github.com/emersion/phproxy-improved/pull/1)
+
 - May 09 2013
 Added X-Frame-Options and Access-Control-Allow-Origin headers
 
