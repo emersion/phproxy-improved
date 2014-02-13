@@ -159,7 +159,8 @@ phproxyimproved.com
                         'base64_encode'   => $base64encode,
                         'strip_meta'      => $stripmeta,
                         'strip_title'     => $striptitle,
-                        'session_cookies' => $sessioncookies
+                        'session_cookies' => $sessioncookies,
+                        'allow_304'       => 1
                     );
 \$_frozen_flags      = array
                     (
@@ -172,7 +173,8 @@ phproxyimproved.com
                         'base64_encode'   => $base64encodealoud,
                         'strip_meta'      => $stripmetaaloud,
                         'strip_title'     => $striptitlealoud,
-                        'session_cookies' => $sessioncookiesaloud
+                        'session_cookies' => $sessioncookiesaloud,
+                        'allow_304'       => 1
                     );                    
 \$_labels            = array
                     (
@@ -185,7 +187,8 @@ phproxyimproved.com
                         'base64_encode'   => array('Base64', 'Use base64 encodng on the address'), 
                         'strip_meta'      => array('Strip Meta', 'Strip meta information tags from pages'), 
                         'strip_title'     => array('Strip Title', 'Strip page title'), 
-                        'session_cookies' => array('Session Cookies', 'Store cookies for this session only') 
+                        'session_cookies' => array('Session Cookies', 'Store cookies for this session only'),
+                        'allow_304'       => array('Allow 304 Cache', 'Pass on last modified info for local caching of images etc.') 
                     );
                     
 \$_hosts             = array
