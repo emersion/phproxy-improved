@@ -25,6 +25,21 @@ define("PHPROXY_ROOT", $_SERVER['DOCUMENT_ROOT']);
 //
 //FUNCTION DECLARATIONS
 //
+//Adapted from http://www.php.net/manual/en/function.getallheaders.php#99814
+if (!function_exists("getallheaders")) {
+  function getallheaders() {
+    $result = array();
+   foreach($_SERVER as $key => $value) {
+     if (substr($key, 0, 5) == "HTTP_") {
+       $key = str_replace(" ", "-", ucwords(strtolower(str_replace("_", " ", substr($key, 5)))));
+        $result[$key] = $value;
+      } else {
+        $result[$key] = $value;
+      }
+    }
+   return $result;
+  }
+}
 
 function show_report($data) {
     include 'index.inc.php';
