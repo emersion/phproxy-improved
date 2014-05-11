@@ -401,7 +401,8 @@ do {
 
     $_request_headers .= " HTTP/1.0\r\n";
     $_request_headers .= 'Host: ' . $_url_parts['host'] . $_url_parts['port_ext'] . "\r\n";
-
+    $_request_headers .= 'Accept-Encoding: ' . "\r\n";
+	
     if (isset($_SERVER['HTTP_USER_AGENT'])) {
         $_request_headers .= 'User-Agent: ' . $_SERVER['HTTP_USER_AGENT'] . "\r\n";
     }
