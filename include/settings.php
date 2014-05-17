@@ -26,9 +26,10 @@ $_flags             = array
                         'remove_scripts'  => 0,
                         'accept_cookies'  => 1,
                         'show_images'     => 1,
-                        'show_referer'    => 1,
-                        'rotate13'        => 0,
-                        'base64_encode'   => 1,
+
+                        'show_referer'    => 0,
+                        'rotate13'        => 1,
+                        'base64_encode'   => 0,
                         'strip_meta'      => 0,
                         'strip_title'     => 0,
                         'session_cookies' => 0,
