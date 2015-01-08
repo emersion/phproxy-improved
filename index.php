@@ -519,6 +519,7 @@ do {
     //
     
     $_response_headers = $_response_keys = array();
+    $_content_encoded = false;
     
     $line = fgets($_socket, 8192);
     
@@ -538,6 +539,14 @@ do {
     if (isset($_response_headers['content-length'])) {
         $_content_length = $_response_headers['content-length'][0];
         unset($_response_headers['content-length'], $_response_keys['content-length']);
+    }
+    if (isset($_response_headers['content-encoding'])) {
+        $_content_encoded = $_response_headers['content-encoding'][0];
+        if ( ($_content_encoded === 'gzip' || $_content_encoded === 'deflate' ) && function_exists('gzinflate')) {
+            $_content_length = false;
+            unset($_response_headers['content-encoding'], $_response_keys['content-encoding']);
+            unset($_response_headers['content-length'], $_response_keys['content-length']);
+        }
     }
     if (isset($_response_headers['content-disposition'])) {
         $_content_disp = $_response_headers['content-disposition'][0];
@@ -669,6 +678,24 @@ while (isset($data{0}));
    
 unset($data);
 fclose($_socket);
+
+if($_content_encoded !== false){
+	if (( $_content_encoded === 'gzip' || $_content_encoded === 'deflate' ) && function_exists('gzinflate')) {
+        $tmp_response_body = $_response_body;
+        // if content has deflate header, strip the first 10 and last 8 chars before attempting a inflate using gzinflate
+        if(strtoupper(bin2hex(substr($tmp_response_body, 0, 2))) === '1F8B'){
+            $tmp_response_body = substr($tmp_response_body, 10, -8);
+        }
+        $tmp_response_body = @gzinflate($tmp_response_body);
+        // if theres been a problem inflating send the Content-Encoding header and original data
+        if($tmp_response_body === false){
+            header('Content-Encoding: ' . $_content_encoded, false);
+        }
+        else{
+            $_response_body = $tmp_response_body;
+        }
+    }
+}
 
 //
 //MODIFY AND DUMP RESOURCE
